@@ -17,7 +17,9 @@ This is a Kotlin Multiplatform project targeting Android, iOS, Web, Desktop, Ser
 
 ## Important Gradle tasks (WIP)
 Can be run with `./gradlew` but it's recommended to create a run configuration.
-* Run web: `:composeApp:wasmJsBrowserDevelopmentRun`
 * Run desktop: `desktopRun -DmainClass=MainKt --quiet`
+* Run web: `:composeApp:wasmJsBrowserDevelopmentRun`
+* Run web JS: `:composeApp:jsBrowserDevelopmentRun`
 * Build web: `./gradlew clean wasmJsBrowserDistribution`
-  When building for web it's recommended to also run a clean to avoid possible bugs
+* Build web JS: `./gradlew clean jsBrowserDistribution`
+When building for web it's recommended to also run a clean to avoid possible bugs

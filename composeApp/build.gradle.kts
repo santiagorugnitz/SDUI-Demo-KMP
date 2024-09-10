@@ -16,6 +16,17 @@ plugins {
 }
 
 kotlin {
+    js {
+        moduleName = "composeApp"
+        binaries.executable()
+        browser {
+            useCommonJs()
+            commonWebpackConfig {
+                outputFileName = "composeApp.js"
+            }
+        }
+    }
+
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
         moduleName = "composeApp"
@@ -105,8 +116,12 @@ kotlin {
         }
 
         val wasmJsMain by getting
-
-    }
+        val jsMain by getting {
+            dependencies {
+                @Suppress("DEPRECATION")
+                implementation(compose.web.core) // Required for Compose Web/Canvas on JS
+            }
+        }    }
 }
 
 android {

@@ -41,6 +41,7 @@ kotlin {
     iosSimulatorArm64()
     
     jvm()
+    js()
     
     sourceSets {
         commonMain.dependencies {

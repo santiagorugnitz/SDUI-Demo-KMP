@@ -1,5 +1,30 @@
 {
   "hosting": {
+    "site": "sdui-dashboard-js",
+    "public": "composeApp/build/dist/js/productionExecutable",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  },
+  "hosting_js": {
+    "site": "sdui-dashboard-js",
+    "public": "composeApp/build/dist/js/productionExecutable",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "hosting_wasm": {
+    "site": "sdui-dashboard",
     "public": "composeApp/build/dist/wasmJs/productionExecutable",
     "ignore": [
       "firebase.json",
