@@ -1,1 +1,1 @@
-const val SERVER_PORT = 8080
+const val CLASS_DISCRIMINATOR = "__name__"

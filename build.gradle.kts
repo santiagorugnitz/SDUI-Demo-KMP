@@ -7,4 +7,11 @@ plugins {
     alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.kotlinJvm) apply false
     alias(libs.plugins.kotlinMultiplatform) apply false
+    alias(libs.plugins.buildkonfig) apply false
+}
+
+buildscript {
+    dependencies {
+        classpath(libs.buildkonfig.gradle.plugin)
+    }
 }

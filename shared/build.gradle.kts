@@ -1,3 +1,6 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.INT
+import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
@@ -6,6 +9,8 @@ import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.buildkonfig)
 }
 
 kotlin {
@@ -39,7 +44,7 @@ kotlin {
     
     sourceSets {
         commonMain.dependencies {
-            // put your Multiplatform dependencies here
+            implementation(libs.kotlinx.serialization.json)
         }
     }
 }
@@ -53,5 +58,15 @@ android {
     }
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
+    }
+}
+buildkonfig {
+    packageName = "com.sdui.dashboard"
+    exposeObjectWithName = "BuildKonfig"
+    defaultConfigs {
+        buildConfigField(STRING, "API_URL", gradleLocalProperties(rootDir).getProperty("API_URL"))
+        buildConfigField(INT, "SERVER_PORT", gradleLocalProperties(rootDir).getProperty("SERVER_PORT"))
+        buildConfigField(STRING, "SERVER_HOST", gradleLocalProperties(rootDir).getProperty("SERVER_HOST"))
+        buildConfigField(STRING, "DB_URL", gradleLocalProperties(rootDir).getProperty("DB_URL"))
     }
 }
